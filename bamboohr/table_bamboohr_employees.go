@@ -16,37 +16,28 @@ func tableBambooEmployee() *plugin.Table {
         List: &plugin.ListConfig {
             Hydrate: listEmployee,
         },
-        Get: &plugin.GetConfig {
-            KeyColumns: plugin.SingleColumn("id"),
-            Hydrate:    getUser,
-        },
+        // Get: &plugin.GetConfig {
+        //     KeyColumns: plugin.SingleColumn("id"),
+        //     Hydrate:    getUser,
+        // },
         Columns: []*plugin.Column {
+            { Name: "firstName", Type: proto.ColumnType_STRING, Description: "Employee's first name" },
+            { Name: "lastName", Type: proto.ColumnType_STRING, Description: "Employee's last name" },
             { Name: "displayName", Type: proto.ColumnType_STRING, Description: "Employee's full name for display" },
+            { Name: "jobTitle", Type: proto.ColumnType_STRING, Description: "Employee's job title" },
+            { Name: "department", Type: proto.ColumnType_STRING, Description: "Employee's department" },
+            { Name: "location", Type: proto.ColumnType_STRING, Description: "Employee's work location" },
+            { Name: "supervisor", Type: proto.ColumnType_STRING, Description: "Employee's supervisor" },
         },
     }
 }
 
 func listEmployee(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
-    fmt.Println(bamboohr_client.ListEmployees())
+    employees := bamboohr_client.ListEmployees()
+    for _, employee := range employees {
 
-    opts := &zendesk.UserListOptions{
-        PageOptions: zendesk.PageOptions{
-            Page:    1,
-            PerPage: 100,
-        },
+        d.StreamListItem(ctx, employee)
     }
-    for true {
-        users, page, err := conn.GetUsers(ctx, opts)
-        if err != nil {
-            return nil, err
-        }
-        for _, t := range users {
-            d.StreamListItem(ctx, t)
-        }
-        if !page.HasNext() {
-            break
-        }
-        opts.Page++
-    }
+
     return nil, nil
 }
