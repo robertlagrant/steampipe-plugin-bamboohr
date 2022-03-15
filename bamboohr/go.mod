@@ -1,4 +1,4 @@
-module github.com/robertlagrant/steampipe-plugin-bamboohr
+module github.com/robertlagrant/steampipe-plugin-bamboohr/bamboohr
 
 go 1.17
 
