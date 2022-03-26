@@ -2,8 +2,8 @@ package bamboohr
 
 import (
 	"context"
+	"fmt"
 
-	"github.com/hashicorp/go-hclog"
 	"github.com/turbot/steampipe-plugin-sdk/grpc/proto"
 	"github.com/turbot/steampipe-plugin-sdk/plugin"
 	"github.com/turbot/steampipe-plugin-sdk/plugin/transform"
@@ -41,15 +41,15 @@ func tableBambooEmployee() *plugin.Table {
 }
 
 func listEmployee(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
-	logger := plugin.Logger(ctx)
-	employeesResponse, _ := bamboohr_client.ListEmployees()
-	// logger.Warn("Log message and a variable", employeesResponse)
-	logger.Warn("Log message and a variable", "employeeResponse", hclog.Fmt("%#v", employeesResponse))
+	// logger := plugin.Logger(ctx)
+	employeesResponse, err := bamboohr_client.ListEmployees()
+	if err != nil {
+		return nil, fmt.Errorf("Could not retrieve employees. Reason: %s", err.Error())
+	}
 
 	for _, employee := range employeesResponse {
-		logger.Info("Log message and a variable", employee)
-
 		d.StreamListItem(ctx, employee)
 	}
+
 	return nil, nil
 }
