@@ -6,6 +6,7 @@ import (
 	"github.com/hashicorp/go-hclog"
 	"github.com/turbot/steampipe-plugin-sdk/grpc/proto"
 	"github.com/turbot/steampipe-plugin-sdk/plugin"
+	"github.com/turbot/steampipe-plugin-sdk/plugin/transform"
 
 	bamboohr_client "github.com/robertlagrant/bamboohr-client-go"
 )
@@ -17,28 +18,24 @@ func tableBambooEmployee() *plugin.Table {
 		List: &plugin.ListConfig{
 			Hydrate: listEmployee,
 		},
-		// Get: &plugin.GetConfig {
-		//     KeyColumns: plugin.SingleColumn("id"),
-		//     Hydrate:    getUser,
-		// },
 		Columns: []*plugin.Column{
 			{Name: "id", Type: proto.ColumnType_STRING, Description: "Employee's BambooHR ID"},
-			{Name: "firstName", Type: proto.ColumnType_STRING, Description: "Employee's first name"},
-			{Name: "lastName", Type: proto.ColumnType_STRING, Description: "Employee's last name"},
-			{Name: "displayName", Type: proto.ColumnType_STRING, Description: "Employee's full name for display"},
-			{Name: "jobTitle", Type: proto.ColumnType_STRING, Description: "Employee's job title"},
+			{Name: "first_name", Transform: transform.FromField("FirstName"), Type: proto.ColumnType_STRING, Description: "Employee's first name"},
+			{Name: "last_name", Transform: transform.FromField("LastName"), Type: proto.ColumnType_STRING, Description: "Employee's last name"},
+			{Name: "display_name", Transform: transform.FromField("DisplayName"), Type: proto.ColumnType_STRING, Description: "Employee's full name for display"},
+			{Name: "job_title", Transform: transform.FromField("JobTitle"), Type: proto.ColumnType_STRING, Description: "Employee's job title"},
 			{Name: "department", Type: proto.ColumnType_STRING, Description: "Employee's department"},
 			{Name: "division", Type: proto.ColumnType_STRING, Description: "Employee's division"},
 			{Name: "location", Type: proto.ColumnType_STRING, Description: "Employee's work location"},
 			{Name: "supervisor", Type: proto.ColumnType_STRING, Description: "Employee's supervisor"},
-			{Name: "payRate", Type: proto.ColumnType_STRING, Description: "Employee's pay rate"},
-			{Name: "terminationDate", Type: proto.ColumnType_STRING, Description: "Employee's termination date"},
-			{Name: "employeeNumber", Type: proto.ColumnType_STRING, Description: "Employee's employee number"},
-			{Name: "hireDate", Type: proto.ColumnType_STRING, Description: "Employee's hire date"},
-			{Name: "originalHireDate", Type: proto.ColumnType_STRING, Description: "Employee's original hire date"},
+			{Name: "pay_rate", Transform: transform.FromField("PayRate").NullIfZero(), Type: proto.ColumnType_STRING, Description: "Employee's pay rate"},
+			{Name: "termination_date", Transform: transform.FromField("TerminationDate").NullIfZero().NullIfEqual("0000-00-00"), Type: proto.ColumnType_STRING, Description: "Employee's termination date"},
+			{Name: "employee_number", Transform: transform.FromField("EmployeeNumber").NullIfZero(), Type: proto.ColumnType_STRING, Description: "Employee's employee number"},
+			{Name: "hire_date", Transform: transform.FromField("HireDate").NullIfZero(), Type: proto.ColumnType_STRING, Description: "Employee's hire date"},
+			{Name: "original_hire_date", Transform: transform.FromField("OriginalHireDate").NullIfZero().NullIfEqual("0000-00-00"), Type: proto.ColumnType_STRING, Description: "Employee's original hire date"},
 			{Name: "status", Type: proto.ColumnType_STRING, Description: "Employee's record status"},
-			{Name: "supervisorId", Type: proto.ColumnType_STRING, Description: "Employee's supervisor's BambooHR ID"},
-			{Name: "supervisorEId", Type: proto.ColumnType_STRING, Description: "Employee's supervisor's employee number"},
+			{Name: "supervisor_id", Transform: transform.FromField("SupervisorID").NullIfZero(), Type: proto.ColumnType_STRING, Description: "Employee's supervisor's BambooHR ID"},
+			{Name: "supervisor_employee_number", Transform: transform.FromField("SupervisorEID").NullIfZero(), Type: proto.ColumnType_STRING, Description: "Employee's supervisor's employee number"},
 		},
 	}
 }
