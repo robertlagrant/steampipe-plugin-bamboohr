@@ -31,7 +31,7 @@ require (
 	github.com/oklog/run v1.0.0 // indirect
 	github.com/olekukonko/tablewriter v0.0.4 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
-	github.com/robertlagrant/bamboohr-client-go v0.0.0-20220315115626-4f0d06c467f0 // indirect
+	github.com/robertlagrant/bamboohr-client-go v0.0.0-20220325234431-cc2e77c64029 // indirect
 	github.com/sethvargo/go-retry v0.1.0 // indirect
 	github.com/stevenle/topsort v0.0.0-20130922064739-8130c1d7596b // indirect
 	github.com/tkrajina/go-reflector v0.5.4 // indirect
