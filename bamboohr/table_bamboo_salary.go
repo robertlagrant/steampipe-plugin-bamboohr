@@ -28,7 +28,6 @@ func tableBambooEmployee() *plugin.Table {
 			{Name: "division", Type: proto.ColumnType_STRING, Description: "Employee's division"},
 			{Name: "location", Type: proto.ColumnType_STRING, Description: "Employee's work location"},
 			{Name: "supervisor", Type: proto.ColumnType_STRING, Description: "Employee's supervisor"},
-			{Name: "pay_rate", Transform: transform.FromField("PayRate").NullIfZero(), Type: proto.ColumnType_STRING, Description: "Employee's pay rate"},
 			{Name: "termination_date", Transform: transform.FromField("TerminationDate").NullIfZero().NullIfEqual("0000-00-00"), Type: proto.ColumnType_STRING, Description: "Employee's termination date"},
 			{Name: "employee_number", Transform: transform.FromField("EmployeeNumber").NullIfZero(), Type: proto.ColumnType_STRING, Description: "Employee's employee number"},
 			{Name: "hire_date", Transform: transform.FromField("HireDate").NullIfZero(), Type: proto.ColumnType_STRING, Description: "Employee's hire date"},
@@ -41,8 +40,8 @@ func tableBambooEmployee() *plugin.Table {
 }
 
 func listEmployee(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
-	// logger := plugin.Logger(ctx)
-	employeesResponse, err := bamboohr_client.ListEmployees()
+	config, err := makeConfig()
+	employeesResponse, err := bamboohr_client.ListEmployees(*config)
 	if err != nil {
 		return nil, fmt.Errorf("Could not retrieve employees. Reason: %s", err.Error())
 	}

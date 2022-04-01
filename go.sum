@@ -118,6 +118,10 @@ github.com/robertlagrant/bamboohr-client-go v0.0.0-20220325184346-5581b963854e h
 github.com/robertlagrant/bamboohr-client-go v0.0.0-20220325184346-5581b963854e/go.mod h1:Vegy3wB69eFGi4V1VmydzqMx4PUQb6pNPika5lxKgqQ=
 github.com/robertlagrant/bamboohr-client-go v0.0.0-20220325234431-cc2e77c64029 h1:GhaeKf9SdjEtaaKq8JY0mG7UEiRcpm8u1Hvwml0dPuE=
 github.com/robertlagrant/bamboohr-client-go v0.0.0-20220325234431-cc2e77c64029/go.mod h1:Vegy3wB69eFGi4V1VmydzqMx4PUQb6pNPika5lxKgqQ=
+github.com/robertlagrant/bamboohr-client-go v0.0.0-20220326114402-77282dad60a1 h1:PljHfZa+b9e4pNJMskXcIZptYde2qQIsxfZRjh9vFl4=
+github.com/robertlagrant/bamboohr-client-go v0.0.0-20220326114402-77282dad60a1/go.mod h1:Vegy3wB69eFGi4V1VmydzqMx4PUQb6pNPika5lxKgqQ=
+github.com/robertlagrant/bamboohr-client-go v0.0.0-20220401170703-256c82685656 h1:1Xi1oFYCfrZzhJ34oS3KFgv+jPMy1U1ztXRBcv6C2WA=
+github.com/robertlagrant/bamboohr-client-go v0.0.0-20220401170703-256c82685656/go.mod h1:Vegy3wB69eFGi4V1VmydzqMx4PUQb6pNPika5lxKgqQ=
 github.com/rogpeppe/fastuuid v1.2.0/go.mod h1:jVj6XXZzXRy/MSR5jhDC/2q6DgLz+nrA6LYCDYWNEvQ=
 github.com/sergi/go-diff v1.0.0/go.mod h1:0CfEIISq7TuYL3j771MWULgwwjU+GofnZX9QAmXWZgo=
 github.com/sethvargo/go-retry v0.1.0 h1:8sPqlWannzcReEcYjHSNw9becsiYudcwTD7CasGjQaI=

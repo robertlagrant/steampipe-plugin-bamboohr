@@ -3,6 +3,11 @@ module github.com/robertlagrant/steampipe-plugin-bamboohr
 go 1.17
 
 require (
+	github.com/robertlagrant/bamboohr-client-go v0.0.0-20220401170703-256c82685656
+	github.com/turbot/steampipe-plugin-sdk v1.8.3
+)
+
+require (
 	github.com/acarl005/stripansi v0.0.0-20180116102854-5a71ef0e047d // indirect
 	github.com/agext/levenshtein v1.2.1 // indirect
 	github.com/apparentlymart/go-textseg/v13 v13.0.0 // indirect
@@ -31,12 +36,10 @@ require (
 	github.com/oklog/run v1.0.0 // indirect
 	github.com/olekukonko/tablewriter v0.0.4 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
-	github.com/robertlagrant/bamboohr-client-go v0.0.0-20220325234431-cc2e77c64029 // indirect
 	github.com/sethvargo/go-retry v0.1.0 // indirect
 	github.com/stevenle/topsort v0.0.0-20130922064739-8130c1d7596b // indirect
 	github.com/tkrajina/go-reflector v0.5.4 // indirect
 	github.com/turbot/go-kit v0.3.0 // indirect
-	github.com/turbot/steampipe-plugin-sdk v1.8.3 // indirect
 	github.com/zclconf/go-cty v1.8.2 // indirect
 	golang.org/x/net v0.0.0-20200822124328-c89045814202 // indirect
 	golang.org/x/sys v0.0.0-20211102061401-a2f17f7b995c // indirect
